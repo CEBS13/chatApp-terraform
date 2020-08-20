@@ -1,0 +1,82 @@
+---
+    - name : "Node app"
+      hosts: localhost
+      connection: local
+      become_method: sudo
+      become: yes
+      
+      
+   
+      vars:
+        homeDir: /home/ubuntu
+        appDir: app
+        account: CEBS13
+        repo: Chat-App-using-Socket.io	
+        become_method: sudo
+        become: yes
+   
+
+
+
+
+      tasks:
+       - name: "Install Nodejs"
+         apt:
+           name:
+            - npm
+            - git
+            - curl
+           state: present
+         become_method: sudo
+         become: yes
+           
+         
+        
+       - name: Install pm2
+         npm: name=pm2 global=yes production=yes
+         become_method: sudo
+         become: yes
+         
+     
+
+       - name: "git clone repo"
+         git: 
+           repo: git://github.com/{{ account }}/{{ repo }}
+           dest: "{{homeDir}}/{{ appDir }}"
+         register: git_finished
+         become_method: sudo
+         become: yes
+             
+      
+       - name: Install app depedencies
+         npm:
+          path: "{{homeDir }}/{{ appDir }}"
+         register: npm_finished
+         when: git_finished.changed
+         become_method: sudo
+         become: yes
+         
+   
+       - name: Delete app.
+         command: pm2 delete chat-app pm2_home=/home/ubuntu/.pm2
+         ignore_errors: yes
+         become: yes
+        
+         
+         
+         
+       - name: Start App.
+         command: pm2 start {{homeDir}}/{{appDir}}/app.js --name chat-app pm2_home=/home/ubuntu/.pm2
+         ignore_errors: yes
+         become: yes
+        
+         
+         
+       - name: Startup script.
+         command: pm2 startup pm2_home=/home/ubuntu/.pm2
+         become: yes
+         
+         
+       - name: Save node app
+         command: pm2 save pm2_home=/home/ubuntu/.pm2
+         become: yes
