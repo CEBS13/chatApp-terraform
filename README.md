@@ -40,6 +40,16 @@ to deploy the code clone the repository and head over chatapp-terraform\terrafor
 terraform init
 terraform apply
 ```
+After the configuration is done you should see the loadbalancer dns name to acces the app
+
+```
+Apply complete! Resources: 15 added, 0 changed, 0 destroyed.
+
+Outputs:
+
+elb_dns_name = main-elb-004815162342.us-east-1.elb.amazonaws.com
+```
+
 For clean up
 ```
 terraform destroy
