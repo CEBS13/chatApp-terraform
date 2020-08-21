@@ -3,6 +3,11 @@ variable "cluster_name" {
     type = string
 }
 
+variable "ami_image" {
+    description = " image ami"
+    type = string
+}
+
 variable "instance_type" {
     description = "Type of ec2 instance ex. t2.micro"
 }
@@ -35,12 +40,12 @@ variable "vpc_security_group_id" {
     type = string
 }
 
-variable "asg_public_subnet_1" {
+variable "asg_subnet_1" {
     description = "block for public subnet"
     type = string
 }
 
-variable "asg_public_subnet_2" {
+variable "asg_subnet_2" {
     description = "block for public subnet"
     type = string
 }

@@ -7,15 +7,15 @@ resource "aws_vpc" "main" {
     cidr_block = var.vpc_cidr_block
 }
 
-resource "aws_subnet" "public_subnet_1" {
+resource "aws_subnet" "subnet_1" {
     vpc_id = aws_vpc.main.id
-    cidr_block = var.public_subnet_1
+    cidr_block = var.subnet_1
     availability_zone = var.availability_zone_1
 }
 
-resource "aws_subnet" "public_subnet_2" {
+resource "aws_subnet" "subnet_2" {
     vpc_id = aws_vpc.main.id
-    cidr_block = var.public_subnet_2
+    cidr_block = var.subnet_2
     availability_zone = var.availability_zone_2
 }
 
@@ -36,12 +36,12 @@ resource "aws_route_table" "vpc_public_sn" {
 }
 
 resource "aws_route_table_association" "route_table_sn_1" {
-    subnet_id = aws_subnet.public_subnet_1.id
+    subnet_id = aws_subnet.subnet_1.id
     route_table_id = aws_route_table.vpc_public_sn.id
 }
 
 resource "aws_route_table_association" "route_table_sn_2"{
-    subnet_id = aws_subnet.public_subnet_2.id
+    subnet_id = aws_subnet.subnet_2.id
     route_table_id = aws_route_table.vpc_public_sn.id
 }
 
@@ -86,13 +86,13 @@ output "vpc_security_group_id" {
 }
 
 
-output "public_subnet_1_id" {
-    value = aws_subnet.public_subnet_1.id
+output "subnet_1_id" {
+    value = aws_subnet.subnet_1.id
     description = "Id for public subnet 1"
 }
 
 
-output "public_subnet_2_id" {
-    value = aws_subnet.public_subnet_2.id
+output "subnet_2_id" {
+    value = aws_subnet.subnet_2.id
     description = "id for public subnet 2"
 }

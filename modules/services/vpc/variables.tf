@@ -19,13 +19,13 @@ variable "vpc_cidr_block" {
     type = string  
 }
 
-variable "public_subnet_1" {
-    description = "CIDR of public subnet 1"
+variable "subnet_1" {
+    description = "CIDR of  subnet 1"
     type = string
 }
 
-variable "public_subnet_2" {
-    description = "cidr of public subnet 2"
+variable "subnet_2" {
+    description = "cidr of subnet 2"
     type = string
 }
 

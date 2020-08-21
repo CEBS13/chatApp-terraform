@@ -4,6 +4,12 @@ variable "cluster_name" {
     default = "chatApp-develop"
 }
 
+variable "ami_image" {
+    description = " ami image"
+    type = string
+    default = "ami-0bcc094591f354be2"
+}
+
 variable "instance_type" {
     description = "Type of ec2 instance ex. t2.micro"
     type = string
@@ -29,26 +35,6 @@ variable "max_size" {
     default = "4"
 }
 
-
-# variable "vpc_id" {
-#  description = "vpc id from a vpc"
-#  type = string
-# }
-
-# variable "vpc_security_group_id" {
-#     description = "security group id"
-#     type = string
-# }
-
-# variable "asg_public_subnet_1" {
-#     description = "block for public subnet"
-#     type = string
-# }
-
-# variable "asg_public_subnet_2" {
-#     description = "block for public subnet"
-#     type = string
-# }
 
 
 # ====== vpc variables =========
@@ -78,13 +64,13 @@ variable "vpc_cidr_block" {
     default = "10.0.0.0/16"
 }
 
-variable "public_subnet_1" {
+variable "subnet_1" {
     description = "CIDR of public subnet 1"
     type = string
     default = "10.0.1.0/24"
 }
 
-variable "public_subnet_2" {
+variable "subnet_2" {
     description = "cidr of public subnet 2"
     type = string
     default = "10.0.2.0/24"
