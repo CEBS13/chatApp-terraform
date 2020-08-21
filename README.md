@@ -58,8 +58,8 @@ This service is build upon two modules VPC and webserver-cluster. All the variab
         availability_zone_1 =  var.availability_zone_1
         availability_zone_2 =  var.availability_zone_2                   
         vpc_cidr_block      =  var.vpc_cidr_block
-        public_subnet_1     =  var.public_subnet_1
-        public_subnet_2     =  var.public_subnet_2
+        subnet_1            =  var.subnet_1
+        subnet_2            =  var.subnet_2
  # ------ port we want open for our app to use --------
         open_port           =  var.open_port
    }
@@ -82,8 +82,8 @@ module "webserver_cluster" {
     #------------------------------------
     vpc_id                = module.vpc.vpc_id
     vpc_security_group_id = module.vpc.vpc_security_group_id
-    asg_public_subnet_1       = module.vpc.public_subnet_1_id
-    asg_public_subnet_2       = module.vpc.public_subnet_2_id
+    asg_subnet_1          = module.vpc.subnet_1_id
+    asg_subnet_2          = module.vpc.subnet_2_id
     
 }
 ```
