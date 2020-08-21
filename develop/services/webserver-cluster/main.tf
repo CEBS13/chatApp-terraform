@@ -60,6 +60,6 @@ resource "aws_autoscaling_schedule" "night_hours"{
     autoscaling_group_name = module.webserver_cluster.asg_name
 }
 
-output "elb_dns_name" {
-    value = module.webserver_cluster.elb_dns_name
+output "alb_dns_name" {
+    value = module.webserver_cluster.alb_dns_name
 }
