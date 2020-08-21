@@ -45,10 +45,11 @@ For clean up
 terraform destroy
 ```
 
-# Overview
+# Modules
 ## webserver service
 
-This service is build upon two modules VPC and webserver-cluster
+This service is build upon two modules VPC and webserver-cluster. All the variables are ready in the variables.tf.
+
 ```hcl
     module "vpc" {
 
@@ -59,10 +60,13 @@ This service is build upon two modules VPC and webserver-cluster
         vpc_cidr_block      =  var.vpc_cidr_block
         public_subnet_1     =  var.public_subnet_1
         public_subnet_2     =  var.public_subnet_2
+ # ------ port we want open for our app to use --------
         open_port           =  var.open_port
    }
 ```
-adasdasd
+
+
+
 ```hcl
 module "webserver_cluster" {
 
@@ -70,9 +74,12 @@ module "webserver_cluster" {
 
     cluster_name          = var.cluster_name
     instance_type         = var.instance_type
+    # ---- port for the app to run default value: 5000 ------
     port_app              = var.port_app
+    # ------ cluster sizes ---------------
     min_size              = var.min_size
     max_size              = var.max_size
+    #------------------------------------
     vpc_id                = module.vpc.vpc_id
     vpc_security_group_id = module.vpc.vpc_security_group_id
     asg_public_subnet_1       = module.vpc.public_subnet_1_id
@@ -80,7 +87,7 @@ module "webserver_cluster" {
     
 }
 ```
-asdasdasdas
+
 ```hcl
 
 resource "aws_autoscaling_schedule" "business_hours" {
@@ -103,6 +110,3 @@ resource "aws_autoscaling_schedule" "night_hours"{
 }
 
 ```
-
-
-asdasdasd
