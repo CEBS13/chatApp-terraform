@@ -1,5 +1,24 @@
 # chatapp-terraform
 
+This folder contains a Terraform configuration that deploys a web server cluster (using EC2), in an Amazon Web Services (AWS) account. It contains a module of  VPC with two subnets in different availability zones.It also contains a module of web server cluster with an Auto Scaling Group and an Elastic Load Balancer. With the use of the user_data we can update the server and start the configuration process of our servers. We install git and ansible. Once installed we clone the ansible playbook and deploy our nodejs app.
+
+You can take a look at the following github repositories that i used:
+
+The ansible playbook that gets cloned in the servers
+
+https://github.com/CEBS13/node-ansible
+
+First version of the configuration code of the terraform code.
+
+https://github.com/CEBS13/terraform-chatApp
+
+Node app to deploy on the servers.
+
+https://github.com/CEBS13/Chat-App-using-Socket.io
+
+
+
+
 
 # Prerequisites
 
@@ -7,7 +26,7 @@
 
 - You must have an Amazon Web Services (AWS) account.
 
-Configure your [AWS](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-quickstart.html) access keys as environment variables:
+configure your [AWS](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-quickstart.html) access keys as environment variables:
 ```bash
     $ aws configure
       AWS Access Key ID [None]: AKIAIOSFODNN7EXAMPLE
@@ -15,9 +34,21 @@ Configure your [AWS](https://docs.aws.amazon.com/cli/latest/userguide/cli-config
       Default region name [None]: us-west-2
       Default output format [None]: json
   ```
+# Run
+to deploy the code clone the repository and head over chatapp-terraform\terraform-chatapp\develop\services\webserver-cluster
+```
+terraform init
+terraform apply
+```
+For clean up
+```
+terraform destroy
+```
 
-# web-server module
+# Overview
+## webserver service
 
+This service is build upon two modules VPC and webserver-cluster
 ```hcl
     module "vpc" {
 
@@ -29,10 +60,12 @@ Configure your [AWS](https://docs.aws.amazon.com/cli/latest/userguide/cli-config
         public_subnet_1     =  var.public_subnet_1
         public_subnet_2     =  var.public_subnet_2
         open_port           =  var.open_port
+   }
 ```
-
-
+adasdasd
+```hcl
 module "webserver_cluster" {
+
     source = "../../../modules/services/webserver-cluster"
 
     cluster_name          = var.cluster_name
@@ -46,6 +79,9 @@ module "webserver_cluster" {
     asg_public_subnet_2       = module.vpc.public_subnet_2_id
     
 }
+```
+asdasdasdas
+```hcl
 
 resource "aws_autoscaling_schedule" "business_hours" {
     scheduled_action_name       = "scale-out-during-buisiness-hours"
@@ -56,6 +92,7 @@ resource "aws_autoscaling_schedule" "business_hours" {
     autoscaling_group_name = module.webserver_cluster.asg_name
 }
 
+
 resource "aws_autoscaling_schedule" "night_hours"{
     scheduled_action_name       = "night-schedule"
     min_size                   = 2
@@ -65,15 +102,7 @@ resource "aws_autoscaling_schedule" "night_hours"{
     autoscaling_group_name = module.webserver_cluster.asg_name
 }
 
-``
+```
 
 
-Deploy the code:
-
-terraform init
-terraform apply
-
-
-Clean up when you're done:
-
-terraform destroy
+asdasdasd
