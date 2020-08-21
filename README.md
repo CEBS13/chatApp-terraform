@@ -47,7 +47,7 @@ Apply complete! Resources: 15 added, 0 changed, 0 destroyed.
 
 Outputs:
 
-elb_dns_name = main-elb-004815162342.us-east-1.elb.amazonaws.com
+alb_dns_name = main-alb-004815162342.us-east-1.elb.amazonaws.com
 ```
 
 For clean up
