@@ -35,7 +35,7 @@ configure your [AWS](https://docs.aws.amazon.com/cli/latest/userguide/cli-config
       Default output format [None]: json
   ```
 # Run
-to deploy the code clone the repository and head over chatapp-terraform\terraform-chatapp\develop\services\webserver-cluster
+to deploy the code clone the repository and head over chatapp-terraform\develop\services\webserver-cluster
 ```
 terraform init
 terraform apply
