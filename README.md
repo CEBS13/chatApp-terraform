@@ -1,6 +1,6 @@
 # chatapp-terraform
 
-This folder contains a Terraform configuration that deploys a web server cluster (using EC2), in an Amazon Web Services (AWS) account. It contains a module of  VPC with two subnets in different availability zones.It also contains a module of web server cluster with an Auto Scaling Group and an Elastic Load Balancer. With the use of the user_data we can update the server and start the configuration process of our servers. We install git and ansible. Once installed we clone the ansible playbook and deploy our nodejs app.
+This folder contains a Terraform configuration that deploys a web server cluster (using EC2), in an Amazon Web Services (AWS) account. It contains a module of  VPC with two subnets in different availability zones. It also contains a module of web server cluster with an Auto Scaling Group and an Elastic Load Balancer. With the use of the user_data we can update the server and start the configuration process of our servers. We install git and ansible. Once installed we clone the ansible playbook and deploy our nodejs app.
 
 You can take a look at the following github repositories that i used:
 
@@ -40,7 +40,7 @@ to deploy the code clone the repository and head over chatapp-terraform\develop\
 terraform init
 terraform apply
 ```
-After the configuration is done you should see the loadbalancer dns name to acces the app
+After the configuration is done you should see the loadbalancer DNS name to acces the app
 
 ```
 Apply complete! Resources: 15 added, 0 changed, 0 destroyed.
